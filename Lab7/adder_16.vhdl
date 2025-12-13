@@ -5,7 +5,7 @@ entity adder_16 is
         C0 : in std_logic;
         S : out std_logic_vector (15 downto 0);
         C16 : out std_logic);
-end adder_8;
+end adder_16;
 architecture structural_16 of adder_16 is
   component full_adder
     port(x,y,z : in std_logic;
