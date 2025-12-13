@@ -7,8 +7,8 @@ end full_adder;
 
 architecture struc_dataflow_3 of full_adder is
   component half_adder
-    port(x,y : std_logic
-        s,c  : std_logic);
+    port(x,y : in std_logic
+        s,c  : out std_logic);
   end component;
   signal hs, hc, tc : std_logic;
   begin
