@@ -1,45 +1,32 @@
-# Clock
-NET "clk"   LOC = "Pxx";  # <-- onboard oscillator pin
-# Reset
-NET "reset" LOC = "Pyy";  # <-- reset button/signal
+# SP3E_DIO4_TEST.ucf
+# Spartan-3E FPGA Starter Kit (UG230) basic constraints: 50MHz clock, 4 switches, 4 buttons, 8 LEDs
 
-# Switches
-NET "sw<0>" LOC = "P..";
-NET "sw<1>" LOC = "P..";
-NET "sw<2>" LOC = "P..";
-NET "sw<3>" LOC = "P..";
-NET "sw<4>" LOC = "P..";
-NET "sw<5>" LOC = "P..";
-NET "sw<6>" LOC = "P..";
-NET "sw<7>" LOC = "P..";
+# ---- Clock (50 MHz on-board oscillator) ----
+NET "CLK_50MHZ" LOC = "C9" | IOSTANDARD = LVCMOS33 ;
+NET "CLK_50MHZ" PERIOD = 20.0ns HIGH 40% ;
 
-# Buttons
-NET "button<0>" LOC = "P..";
-NET "button<1>" LOC = "P..";
-NET "button<2>" LOC = "P..";
-NET "button<3>" LOC = "P..";
+# ---- Slide switches (4) ----
+NET "SW<0>" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP ;
+NET "SW<1>" LOC = "L14" | IOSTANDARD = LVTTL | PULLUP ;
+NET "SW<2>" LOC = "H18" | IOSTANDARD = LVTTL | PULLUP ;
+NET "SW<3>" LOC = "N17" | IOSTANDARD = LVTTL | PULLUP ;
 
-# LEDs
-NET "led<0>" LOC = "P..";
-NET "led<1>" LOC = "P..";
-NET "led<2>" LOC = "P..";
-NET "led<3>" LOC = "P..";
-NET "led<4>" LOC = "P..";
-NET "led<5>" LOC = "P..";
-NET "led<6>" LOC = "P..";
-NET "led<7>" LOC = "P..";
+# ---- Push buttons (4) ----
+NET "BTN_EAST"  LOC = "H13" | IOSTANDARD = LVTTL | PULLDOWN ;
+NET "BTN_NORTH" LOC = "V4"  | IOSTANDARD = LVTTL | PULLDOWN ;
+NET "BTN_SOUTH" LOC = "K17" | IOSTANDARD = LVTTL | PULLDOWN ;
+NET "BTN_WEST"  LOC = "D18" | IOSTANDARD = LVTTL | PULLDOWN ;
 
-# 7-seg
-NET "an<0>" LOC = "P..";
-NET "an<1>" LOC = "P..";
-NET "an<2>" LOC = "P..";
-NET "an<3>" LOC = "P..";
+# Optional: if your top-level uses 'reset' (active-high), you can alias it to BTN_SOUTH by renaming the port,
+# or uncomment the line below ONLY if your design actually has a port called reset.
+#NET "reset" LOC = "K17" | IOSTANDARD = LVTTL | PULLDOWN ;
 
-NET "seg<0>" LOC = "P..";  # A
-NET "seg<1>" LOC = "P..";  # B
-NET "seg<2>" LOC = "P..";  # C
-NET "seg<3>" LOC = "P..";  # D
-NET "seg<4>" LOC = "P..";  # E
-NET "seg<5>" LOC = "P..";  # F
-NET "seg<6>" LOC = "P..";  # G
-NET "dp"     LOC = "P..";
+# ---- Discrete LEDs (8) ----
+NET "LED<7>" LOC = "F9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<6>" LOC = "E9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<5>" LOC = "D11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<4>" LOC = "C11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<3>" LOC = "F11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<2>" LOC = "E11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<1>" LOC = "E12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+NET "LED<0>" LOC = "F12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
