@@ -1,32 +1,61 @@
-# SP3E_DIO4_TEST.ucf
-# Spartan-3E FPGA Starter Kit (UG230) basic constraints: 50MHz clock, 4 switches, 4 buttons, 8 LEDs
+#################################################
+# Spartan-3E Starter Kit (UG230)
+# Device: XC3S500E-FG320
+# Top ports:
+# clk, reset, button[3:0], sw[7:0],
+# led[7:0], an[3:0], seg[6:0], dp
+#################################################
 
-# ---- Clock (50 MHz on-board oscillator) ----
-NET "CLK_50MHZ" LOC = "C9" | IOSTANDARD = LVCMOS33 ;
-NET "CLK_50MHZ" PERIOD = 20.0ns HIGH 40% ;
+# ================= CLOCK =================
+NET "clk" LOC = "C9" | IOSTANDARD = LVCMOS33;
+NET "clk" PERIOD = 20 ns HIGH 50%;
 
-# ---- Slide switches (4) ----
-NET "SW<0>" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP ;
-NET "SW<1>" LOC = "L14" | IOSTANDARD = LVTTL | PULLUP ;
-NET "SW<2>" LOC = "H18" | IOSTANDARD = LVTTL | PULLUP ;
-NET "SW<3>" LOC = "N17" | IOSTANDARD = LVTTL | PULLUP ;
+# ================= RESET =================
+# Rotary center push button
+NET "reset" LOC = "V16" | IOSTANDARD = LVTTL | PULLDOWN;
 
-# ---- Push buttons (4) ----
-NET "BTN_EAST"  LOC = "H13" | IOSTANDARD = LVTTL | PULLDOWN ;
-NET "BTN_NORTH" LOC = "V4"  | IOSTANDARD = LVTTL | PULLDOWN ;
-NET "BTN_SOUTH" LOC = "K17" | IOSTANDARD = LVTTL | PULLDOWN ;
-NET "BTN_WEST"  LOC = "D18" | IOSTANDARD = LVTTL | PULLDOWN ;
+# ================= SWITCHES (4 only on board) =================
+NET "sw<0>" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP;
+NET "sw<1>" LOC = "L14" | IOSTANDARD = LVTTL | PULLUP;
+NET "sw<2>" LOC = "H18" | IOSTANDARD = LVTTL | PULLUP;
+NET "sw<3>" LOC = "N17" | IOSTANDARD = LVTTL | PULLUP;
 
-# Optional: if your top-level uses 'reset' (active-high), you can alias it to BTN_SOUTH by renaming the port,
-# or uncomment the line below ONLY if your design actually has a port called reset.
-#NET "reset" LOC = "K17" | IOSTANDARD = LVTTL | PULLDOWN ;
+# Unused switches
+NET "sw<4>" TIG;
+NET "sw<5>" TIG;
+NET "sw<6>" TIG;
+NET "sw<7>" TIG;
 
-# ---- Discrete LEDs (8) ----
-NET "LED<7>" LOC = "F9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
-NET "LED<6>" LOC = "E9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
-NET "LED<5>" LOC = "D11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
-NET "LED<4>" LOC = "C11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
-NET "LED<3>" LOC = "F11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
-NET "LED<2>" LOC = "E11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
-NET "LED<1>" LOC = "E12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
-NET "LED<0>" LOC = "F12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8 ;
+# ================= BUTTONS =================
+NET "button<0>" LOC = "H13" | IOSTANDARD = LVTTL | PULLDOWN;  # EAST
+NET "button<1>" LOC = "V4"  | IOSTANDARD = LVTTL | PULLDOWN;  # NORTH
+NET "button<2>" LOC = "K17" | IOSTANDARD = LVTTL | PULLDOWN;  # SOUTH
+NET "button<3>" LOC = "D18" | IOSTANDARD = LVTTL | PULLDOWN;  # WEST
+
+# ================= LEDs =================
+NET "led<0>" LOC = "F12" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = SLOW;
+NET "led<1>" LOC = "E12" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = SLOW;
+NET "led<2>" LOC = "E11" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = SLOW;
+NET "led<3>" LOC = "F11" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = SLOW;
+NET "led<4>" LOC = "C11" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = SLOW;
+NET "led<5>" LOC = "D11" | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = SLOW;
+NET "led<6>" LOC = "E9"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = SLOW;
+NET "led<7>" LOC = "F9"  | IOSTANDARD = LVTTL | DRIVE = 8 | SLEW = SLOW;
+
+# ================= 7-SEGMENT =================
+# Anodes (active-low)
+NET "an<0>" LOC = "L18" | IOSTANDARD = LVTTL;
+NET "an<1>" LOC = "F18" | IOSTANDARD = LVTTL;
+NET "an<2>" LOC = "D17" | IOSTANDARD = LVTTL;
+NET "an<3>" LOC = "E18" | IOSTANDARD = LVTTL;
+
+# Segments A..G (active-low)
+NET "seg<0>" LOC = "K14" | IOSTANDARD = LVTTL;  # A
+NET "seg<1>" LOC = "H14" | IOSTANDARD = LVTTL;  # B
+NET "seg<2>" LOC = "G13" | IOSTANDARD = LVTTL;  # C
+NET "seg<3>" LOC = "F14" | IOSTANDARD = LVTTL;  # D
+NET "seg<4>" LOC = "E13" | IOSTANDARD = LVTTL;  # E
+NET "seg<5>" LOC = "G14" | IOSTANDARD = LVTTL;  # F
+NET "seg<6>" LOC = "D14" | IOSTANDARD = LVTTL;  # G
+
+NET "dp" LOC = "H15" | IOSTANDARD = LVTTL;
