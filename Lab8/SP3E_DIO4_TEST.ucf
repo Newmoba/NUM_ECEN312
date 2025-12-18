@@ -1,0 +1,45 @@
+# Clock
+NET "clk"   LOC = "Pxx";  # <-- onboard oscillator pin
+# Reset
+NET "reset" LOC = "Pyy";  # <-- reset button/signal
+
+# Switches
+NET "sw<0>" LOC = "P..";
+NET "sw<1>" LOC = "P..";
+NET "sw<2>" LOC = "P..";
+NET "sw<3>" LOC = "P..";
+NET "sw<4>" LOC = "P..";
+NET "sw<5>" LOC = "P..";
+NET "sw<6>" LOC = "P..";
+NET "sw<7>" LOC = "P..";
+
+# Buttons
+NET "button<0>" LOC = "P..";
+NET "button<1>" LOC = "P..";
+NET "button<2>" LOC = "P..";
+NET "button<3>" LOC = "P..";
+
+# LEDs
+NET "led<0>" LOC = "P..";
+NET "led<1>" LOC = "P..";
+NET "led<2>" LOC = "P..";
+NET "led<3>" LOC = "P..";
+NET "led<4>" LOC = "P..";
+NET "led<5>" LOC = "P..";
+NET "led<6>" LOC = "P..";
+NET "led<7>" LOC = "P..";
+
+# 7-seg
+NET "an<0>" LOC = "P..";
+NET "an<1>" LOC = "P..";
+NET "an<2>" LOC = "P..";
+NET "an<3>" LOC = "P..";
+
+NET "seg<0>" LOC = "P..";  # A
+NET "seg<1>" LOC = "P..";  # B
+NET "seg<2>" LOC = "P..";  # C
+NET "seg<3>" LOC = "P..";  # D
+NET "seg<4>" LOC = "P..";  # E
+NET "seg<5>" LOC = "P..";  # F
+NET "seg<6>" LOC = "P..";  # G
+NET "dp"     LOC = "P..";
