@@ -16,121 +16,6 @@ Annotating constraints to design from ucf file
 "C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf" ...
 Resolving constraint associations...
 Checking Constraint Associations...
-ERROR:ConstraintSystem:59 - Constraint <NET "CLK_50MHZ" LOC = "C9" |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(5)]: NET "CLK_50MHZ" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-WARNING:ConstraintSystem - A target design object for the Locate constraint
-   '<NET "CLK_50MHZ" LOC = "C9" |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(5)]' could not be found and so
-   the Locate constraint will be removed.
-
-ERROR:ConstraintSystem:59 - Constraint <IOSTANDARD = LVCMOS33 ;>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(5)]: NET "CLK_50MHZ" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <NET "CLK_50MHZ" PERIOD = 20.0ns HIGH 40%
-   ;> [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(6)]: NET "CLK_50MHZ" not
-   found.  Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <NET "BTN_EAST"  LOC = "H13" |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(15)]: NET "BTN_EAST" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-WARNING:ConstraintSystem - A target design object for the Locate constraint
-   '<NET "BTN_EAST"  LOC = "H13" |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(15)]' could not be found and so
-   the Locate constraint will be removed.
-
-ERROR:ConstraintSystem:59 - Constraint <IOSTANDARD = LVTTL |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(15)]: NET "BTN_EAST" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <PULLDOWN ;>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(15)]: NET "BTN_EAST" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <NET "BTN_NORTH" LOC = "V4"  |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(16)]: NET "BTN_NORTH" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-WARNING:ConstraintSystem - A target design object for the Locate constraint
-   '<NET "BTN_NORTH" LOC = "V4"  |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(16)]' could not be found and so
-   the Locate constraint will be removed.
-
-ERROR:ConstraintSystem:59 - Constraint <IOSTANDARD = LVTTL |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(16)]: NET "BTN_NORTH" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <PULLDOWN ;>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(16)]: NET "BTN_NORTH" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <NET "BTN_SOUTH" LOC = "K17" |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(17)]: NET "BTN_SOUTH" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-WARNING:ConstraintSystem - A target design object for the Locate constraint
-   '<NET "BTN_SOUTH" LOC = "K17" |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(17)]' could not be found and so
-   the Locate constraint will be removed.
-
-ERROR:ConstraintSystem:59 - Constraint <IOSTANDARD = LVTTL |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(17)]: NET "BTN_SOUTH" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <PULLDOWN ;>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(17)]: NET "BTN_SOUTH" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <NET "BTN_WEST"  LOC = "D18" |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(18)]: NET "BTN_WEST" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-WARNING:ConstraintSystem - A target design object for the Locate constraint
-   '<NET "BTN_WEST"  LOC = "D18" |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(18)]' could not be found and so
-   the Locate constraint will be removed.
-
-ERROR:ConstraintSystem:59 - Constraint <IOSTANDARD = LVTTL |>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(18)]: NET "BTN_WEST" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
-ERROR:ConstraintSystem:59 - Constraint <PULLDOWN ;>
-   [C:/Users/User/Downloads/SP3E_DIO4_TEST.ucf(18)]: NET "BTN_WEST" not found. 
-   Please verify that:
-   1. The specified design element actually exists in the original design.
-   2. The specified object is spelled correctly in the constraint source file.
-
 
 Done...
 
@@ -144,14 +29,52 @@ Partition Implementation Status
 -------------------------------
 
 NGDBUILD Design Results Summary:
-  Number of errors:    15
-  Number of warnings:   5
+  Number of errors:     0
+  Number of warnings:   0
 
+Writing NGD file "SP3E_DIO4_TEST.ngd" ...
 Total REAL time to NGDBUILD completion:  2 sec
 Total CPU time to NGDBUILD completion:   2 sec
 
-One or more errors were found during NGDBUILD.  No NGD file will be written.
-
 Writing NGDBUILD log file "SP3E_DIO4_TEST.bld"...
 
-Process "Translate" failed
+NGDBUILD done.
+
+Process "Translate" completed successfully
+
+Started : "Map".
+Running map...
+Command Line: map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o SP3E_DIO4_TEST_map.ncd SP3E_DIO4_TEST.ngd SP3E_DIO4_TEST.pcf
+Using target part "3s500efg320-4".
+Mapping design into LUTs...
+Running directed packing...
+ERROR:Pack:1107 - Pack was unable to combine the symbols listed below into a
+   single IOB component because the site type selected is not compatible. The
+   component type is determined by the types of logic and the properties and
+   configuration of the logic it contains. In this case an IO component of type
+   IOB was chosen because the IO contains symbols and/or properties consistent
+   with output or bi-directional usage and contains no other symbols or
+   properties that require a more specific IO component type. Please double
+   check that the types of logic elements and all of their relevant properties
+   and configuration options are compatible with the physical site type of the
+   constraint.
+
+   Summary:
+   Symbols involved:
+   	BUF symbol "an_3_OBUF" (Output Signal = an<3>)
+   	PAD symbol "an<3>" (Pad Signal = an<3>)
+   Component type involved: IOB
+   Site Location involved: E18
+   Site Type involved: IBUF
+
+
+Mapping completed.
+See MAP report file "SP3E_DIO4_TEST_map.mrp" for details.
+Problem encountered during the packing phase.
+
+Design Summary
+--------------
+Number of errors   :   1
+Number of warnings :   0
+
+Process "Map" failed
