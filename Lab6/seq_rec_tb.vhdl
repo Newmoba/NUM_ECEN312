@@ -74,6 +74,44 @@ begin
         X_tb <= '0';
         wait for 20 ns;
         
+
+	--1101 tanih
+        -- X=1, A->B
+        reset_tb <= '0';
+        X_tb <= '1';
+        wait for 20 ns; 
+        -- X=1, B->C
+        reset_tb <= '0';
+        X_tb <= '1';
+        wait for 20 ns;   
+        --X=0, C->D
+        reset_tb <= '0';
+        X_tb <= '0';
+        wait for 20 ns;
+        --X=1, D->B
+        reset_tb <= '0';
+        X_tb <= '1';
+        wait for 20 ns;
+        --X=1(C)
+        reset_tb <= '0';
+        X_tb <= '1';
+        wait for 20 ns;
+        -- X=0, C->D
+        reset_tb <= '0';
+        X_tb <= '0';
+        wait for 40 ns;
+        --X=0, D->A
+        reset_tb <= '0';
+        X_tb <= '0';
+        wait for 40 ns;
+        
+
+        reset_tb <= '1';
+        X_tb <= '1';
+        wait for 20 ns;
+        reset_tb <= '0';
+        X_tb <= '0';
+        wait for 20 ns;	
         wait;
     end process;
     
