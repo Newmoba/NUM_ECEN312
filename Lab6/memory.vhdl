@@ -1,93 +1,126 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity memory is
-    port(
-        clk, reset : in std_logic;
-        write : in std_logic;
-        bus_id : in std_logic_vector(7 downto 0);
-        oe, we : out std_logic;
-        addr : out std_logic_vector(1 downto 0));
-end memory;
+entity memory_tb is
+end memory_tb;
 
-architecture behavioral of memory is
-    type state_type is (idle, action, read1, read2, read3, read4, write_state);
-    signal present_state, next_state : state_type;
+architecture testbench of memory_tb is
+    component memory
+        port(
+            clk, reset : in std_logic;
+            write : in std_logic;
+            bus_id : in std_logic_vector(7 downto 0);
+            oe, we : out std_logic;
+            addr : out std_logic_vector(1 downto 0));
+    end component;
+    
+    signal clk_tb : std_logic := '0';
+    signal reset_tb : std_logic;
+    signal write_tb : std_logic;
+    signal bus_id_tb : std_logic_vector(7 downto 0);
+    signal oe_tb, we_tb : std_logic;
+    signal addr_tb : std_logic_vector(1 downto 0);
     
 begin
-    --register state
-    process(clk, reset)
+    uut: memory
+        port map(
+            clk => clk_tb,
+            reset => reset_tb,
+            write => write_tb,
+            bus_id => bus_id_tb,
+            oe => oe_tb,
+            we => we_tb,
+            addr => addr_tb
+        );
+    
+    --clock
+    process
     begin
-        if reset = '0' then
-            present_state <= idle;
-        elsif (clk'event and clk='1') then
-            present_state <= next_state;
-        end if;
+        clk_tb <= '0';
+        wait for 20 ns;
+        clk_tb <= '1';
+        wait for 20 ns;
     end process;
     
-    -- next state, output
-    process(present_state, write, bus_id)
+    process
     begin
-        -- Default outputs
-        oe <= '0';
-        we <= '0';
-        addr <= "00";
-        next_state <= present_state;
+        -- Test 1: Reset
+        reset_tb <= '0';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
         
-        case present_state is
-            when idle =>
-                oe <= '0';
-                we <= '0';
-                addr <= "00";
-                if bus_id = "11110011" then
-                    next_state <= action;
-                else
-                    next_state <= idle;
-                end if;
-                
-            when action =>
-                oe <= '0';
-                we <= '0';
-                addr <= "00";
-                if write = '0' then
-                    next_state <= read1;
-                else
-                    next_state <= write_state;
-                end if;
-                
-            when read1 =>
-                oe <= '1';
-                we <= '0';
-                addr <= "00";
-                next_state <= read2;
-                
-            when read2 =>
-                oe <= '1';
-                we <= '0';
-                addr <= "01";
-                next_state <= read3;
-                
-            when read3 =>
-                oe <= '1';
-                we <= '0';
-                addr <= "10";
-                next_state <= read4;
-                
-            when read4 =>
-                oe <= '1';
-                we <= '0';
-                addr <= "11";
-                next_state <= idle;
-                
-            when write_state =>
-                oe <= '0';
-                we <= '1';
-                addr <= "00";
-                next_state <= idle;
-                
-            when others =>
-                next_state <= idle;
-        end case;
+        -- wrong bus_id(idle)
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns; 
+        
+        --tohiroh bus_id(uildel/action)
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "11110011";
+        wait for 20 ns;
+        
+        -- read1
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
+        
+        --read2
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
+        
+        --read3
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
+        
+        --read4
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
+  
+        --read4 to idle
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
+        
+        --idle loop
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
+        
+        
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "11110011";
+        wait for 20 ns;
+        
+        --write
+        reset_tb <= '1';
+        write_tb <= '1';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
+        
+        --write to idle
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        wait for 20 ns;
+        --idle loop
+        reset_tb <= '1';
+        write_tb <= '0';
+        bus_id_tb <= "00000000";
+        
+        wait;
     end process;
     
-end behavioral;
+end testbench;
