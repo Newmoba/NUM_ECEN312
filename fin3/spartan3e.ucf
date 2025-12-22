@@ -1,26 +1,24 @@
-# Clock
-NET "clk" LOC = "C9" | IOSTANDARD = LVCMOS33 | PERIOD = 20ns;
+NET "clk_50mhz" LOC = "C9" | IOSTANDARD = LVCMOS33 | PERIOD = 20 ns;
 
-# Switches
-NET "sw<0>" LOC = "H13" | IOSTANDARD = LVCMOS33;
-NET "sw<1>" LOC = "L14" | IOSTANDARD = LVCMOS33;
-NET "sw<2>" LOC = "L13" | IOSTANDARD = LVCMOS33;
-NET "sw<3>" LOC = "N14" | IOSTANDARD = LVCMOS33;
+NET "sw<0>" LOC = "F12" | IOSTANDARD = LVCMOS33;  -- Check your board manual
+NET "sw<1>" LOC = "E12" | IOSTANDARD = LVCMOS33;
+NET "sw<2>" LOC = "D13" | IOSTANDARD = LVCMOS33;
+NET "sw<3>" LOC = "C13" | IOSTANDARD = LVCMOS33;
 
-# Buttons (example)
-NET "btn_north" LOC = "V4" | IOSTANDARD = LVCMOS33 | PULLUP;
-NET "btn_east"  LOC = "D18" | IOSTANDARD = LVCMOS33 | PULLUP;
--- Other buttons: BTN_SOUTH = "K17", BTN_WEST = "P18" гэх мэт
+NET "btn_south" LOC = "K17" | IOSTANDARD = LVCMOS33 | PULLUP;
+NET "btn_east"  LOC = "H18" | IOSTANDARD = LVCMOS33 | PULLUP;
 
-# LCD
-NET "lcd_rs" LOC = "L18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "lcd_rw" LOC = "L17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "lcd_e"  LOC = "M18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "lcd_db<4>" LOC = "R15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "lcd_db<5>" LOC = "R16" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "lcd_db<6>" LOC = "T17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "lcd_db<7>" LOC = "T18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+# 8 Discrete LEDs (LD7 left-most - LD0 right-most)
+NET "ld<0>" LOC = "H12" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
+NET "ld<1>" LOC = "J11" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
+NET "ld<2>" LOC = "K11" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
+NET "ld<3>" LOC = "G12" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
+NET "ld<4>" LOC = "G10" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
+NET "ld<5>" LOC = "H10" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
+NET "ld<6>" LOC = "J10" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
+NET "ld<7>" LOC = "K13" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
 
-# SDRAM (partial, full in UG230)
-NET "sdram_clk" LOC = "T4" | IOSTANDARD = SSTL2_I;
--- Other pins long list, reference manual-аас бүрэн авна уу.
+# DDR SDRAM pins (MIG wizard автоматаар өгнө, эсвэл UG230 Appendix B-ээс ав)
+# Жишээ partial:
+NET "ddr_ck" LOC = "T4" | IOSTANDARD = SSTL2_I;
+# Бүтэн list UG230-д байгаа.
