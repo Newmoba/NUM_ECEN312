@@ -1,37 +1,23 @@
-################################################################################
-# UCF Constraints for DDR SDRAM Demo on Spartan-3E Starter Kit
-# Based on Spartan-3E Starter Kit Board User Guide (UG230)
-# Target Device: XC3S500E-FG320
-################################################################################
-
-################################################################################
-# Clock Input - 50 MHz On-board Oscillator
-################################################################################
 NET "clk_50mhz" LOC = "C9" | IOSTANDARD = LVCMOS33;
 NET "clk_50mhz" PERIOD = 20.0ns HIGH 40%;
 
-################################################################################
+
 # Push Button Switches (Active High when pressed)
 # All buttons require internal PULLDOWN resistors
-################################################################################
 NET "btn_north" LOC = "V4" | IOSTANDARD = LVTTL | PULLDOWN;  # Write command
 NET "btn_south" LOC = "K17" | IOSTANDARD = LVTTL | PULLDOWN; # Read command
 NET "btn_east" LOC = "H13" | IOSTANDARD = LVTTL | PULLDOWN;  # Increment address
 NET "btn_west" LOC = "D18" | IOSTANDARD = LVTTL | PULLDOWN;  # Reset
 
-################################################################################
 # Slide Switches (UP=High, DOWN=Low)
 # Used for 4-bit data input
-################################################################################
 NET "sw<0>" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP;
 NET "sw<1>" LOC = "L14" | IOSTANDARD = LVTTL | PULLUP;
 NET "sw<2>" LOC = "H18" | IOSTANDARD = LVTTL | PULLUP;
 NET "sw<3>" LOC = "N17" | IOSTANDARD = LVTTL | PULLUP;
 
-################################################################################
 # Discrete LEDs (Active High)
 # Used to display 8-bit data output
-################################################################################
 NET "led<0>" LOC = "F12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
 NET "led<1>" LOC = "E12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
 NET "led<2>" LOC = "E11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
@@ -41,10 +27,8 @@ NET "led<5>" LOC = "D11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
 NET "led<6>" LOC = "E9" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
 NET "led<7>" LOC = "F9" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
 
-################################################################################
 # Character LCD Display (4-bit interface)
 # Shared with StrataFlash data lines SF_D<11:8>
-################################################################################
 NET "lcd_e" LOC = "M18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
 NET "lcd_rs" LOC = "L18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
 NET "lcd_rw" LOC = "L17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
@@ -53,12 +37,9 @@ NET "lcd_data<1>" LOC = "R16" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
 NET "lcd_data<2>" LOC = "P17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
 NET "lcd_data<3>" LOC = "M15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
 
-################################################################################
 # DDR SDRAM - Micron MT46V32M16 (512 Mbit = 64 MB)
 # All DDR signals use SSTL2_I standard (2.5V)
 # Bank 3 is dedicated to DDR SDRAM
-################################################################################
-
 # DDR System Control Signals
 NET "ddr_clk" LOC = "J5" | IOSTANDARD = SSTL2_I;
 NET "ddr_clk_n" LOC = "J4" | IOSTANDARD = SSTL2_I;
@@ -119,48 +100,4 @@ NET "ddr_dm<1>" LOC = "K6" | IOSTANDARD = SSTL2_I;   # UDM (Upper data mask)
 NET "ddr_udqs" LOC = "G6" | IOSTANDARD = SSTL2_I;    # Upper DQS
 NET "ddr_ldqs" LOC = "L6" | IOSTANDARD = SSTL2_I;    # Lower DQS
 
-################################################################################
-# VREF Pins for Bank 3 (DDR SDRAM bank)
-# These pins are used as voltage reference for SSTL2_I standard
-# They should be reserved and not used as general I/O
-################################################################################
-# The following pins are VREF pins and should not be assigned:
-# F5, G5, K1, K2
 
-################################################################################
-# Timing Constraints for DDR SDRAM
-################################################################################
-# The DDR SDRAM operates at 50 MHz (20ns period) in this simplified design
-# For production designs, faster clocks (100+ MHz) would be used
-
-################################################################################
-# Additional Notes
-################################################################################
-# 1. Bank 3 voltage (VCCO) is fixed at 2.5V for DDR SDRAM compatibility
-# 2. All DDR signals require SSTL2_I I/O standard
-# 3. Proper series termination resistors are already on the board for DDR signals
-# 4. The LCD shares data lines with StrataFlash SF_D<11:8>
-#    - Ensure SF_CE0 is high when using LCD
-#    - Or use LCD_RW = 0 (write-only mode) when using StrataFlash
-# 5. Push buttons are active-high and require PULLDOWN
-# 6. Slide switches are active-high and use PULLUP for stability
-
-################################################################################
-# Design Implementation Options (optional, for better performance)
-################################################################################
-# These can be set in ISE or added here:
-# 
-# For better timing performance:
-# NET "ddr_clk" CLOCK_DEDICATED_ROUTE = FALSE;
-# 
-# For reduced signal integrity issues:
-# NET "ddr_dq<*>" SLEW = FAST;
-# NET "ddr_dqs<*>" SLEW = FAST;
-#
-# Timing ignore for asynchronous inputs (if needed):
-# NET "btn_*" TIG;
-# NET "sw<*>" TIG;
-
-################################################################################
-# End of UCF File
-################################################################################
