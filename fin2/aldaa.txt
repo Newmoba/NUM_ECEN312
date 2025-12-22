@@ -1,0 +1,5 @@
+ERROR:HDLParsers:1202 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 68. Redeclaration of symbol read_data.
+ERROR:HDLParsers:3260 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 138. Object name expected: Enum 'read_data' unexpected.
+ERROR:HDLParsers:3260 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 191. Object name expected: Enum 'read_data' unexpected.
+ERROR:HDLParsers:808 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 198. = can not have such operands in this context.
+ERROR:HDLParsers:813 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 342. Enumerated value func_set3 is missing in case.
