@@ -45,8 +45,8 @@ architecture Behavioral of DDR_SDRAM_LCD_System is
     signal lcd_state : lcd_state_type := POWER_ON;
     
     -- DDR тест төлөвүүд
-    type ddr_state_type is (IDLE, WRITE_DATA, READ_DATA, VERIFY, COMPLETE, ERROR);
-    signal ddr_state : ddr_state_type := IDLE;
+    type ddr_state_type is (DDR_IDLE, DDR_WRITE, DDR_READ, DDR_VERIFY, DDR_COMPLETE, DDR_ERROR);
+    signal ddr_state : ddr_state_type := DDR_IDLE;
     
     -- Дотоод сигналууд
     signal clk_div       : unsigned(19 downto 0) := (others => '0');
@@ -65,7 +65,7 @@ architecture Behavioral of DDR_SDRAM_LCD_System is
     
     -- DDR тест өгөгдөл
     signal test_data      : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
-    signal read_data      : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
+    signal ddr_read_data  : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
     signal error_count    : unsigned(7 downto 0) := (others => '0');
     signal test_address   : unsigned(12 downto 0) := (others => '0');
     
@@ -102,9 +102,9 @@ begin
 
     -- LED статус индикатор
     led_status(7 downto 5) <= "000";
-    led_status(4) <= '1' when ddr_state = COMPLETE else '0';
-    led_status(3) <= '1' when ddr_state = ERROR else '0';
-    led_status(2) <= '1' when ddr_state = WRITE_DATA or ddr_state = READ_DATA else '0';
+    led_status(4) <= '1' when ddr_state = DDR_COMPLETE else '0';
+    led_status(3) <= '1' when ddr_state = DDR_ERROR else '0';
+    led_status(2) <= '1' when ddr_state = DDR_WRITE or ddr_state = DDR_READ else '0';
     led_status(1) <= '1' when lcd_state = READY else '0';
     led_status(0) <= lcd_clk;
     
@@ -133,9 +133,9 @@ begin
     process(clk, reset)
     begin
         if reset = '1' then
-            ddr_state <= IDLE;
+            ddr_state <= DDR_IDLE;
             test_data <= (others => '0');
-            read_data <= (others => '0');
+            ddr_read_data <= (others => '0');
             error_count <= (others => '0');
             test_address <= (others => '0');
             btn_test_prev <= '0';
@@ -152,7 +152,7 @@ begin
             btn_read_prev <= btn_read;
             
             case ddr_state is
-                when IDLE =>
+                when DDR_IDLE =>
                     ddr_cas_n <= '1';
                     ddr_ras_n <= '1';
                     ddr_we_n <= '1';
@@ -161,10 +161,10 @@ begin
                         test_data <= switches;
                         test_address <= (others => '0');
                         error_count <= (others => '0');
-                        ddr_state <= WRITE_DATA;
+                        ddr_state <= DDR_WRITE;
                     end if;
                     
-                when WRITE_DATA =>
+                when DDR_WRITE =>
                     -- DDR бичих команд симуляци
                     ddr_addr <= std_logic_vector(test_address);
                     ddr_ba <= "00";
@@ -176,10 +176,10 @@ begin
                         delay_counter <= delay_counter + 1;
                     else
                         delay_counter <= (others => '0');
-                        ddr_state <= READ_DATA;
+                        ddr_state <= DDR_READ;
                     end if;
                     
-                when READ_DATA =>
+                when DDR_READ =>
                     -- DDR унших команд симуляци
                     ddr_ras_n <= '0';
                     ddr_cas_n <= '0';
@@ -188,35 +188,35 @@ begin
                     if delay_counter < 100 then
                         delay_counter <= delay_counter + 1;
                         -- Симуляцид буцаах өгөгдөл
-                        read_data <= test_data;
+                        ddr_read_data <= test_data;
                     else
                         delay_counter <= (others => '0');
-                        ddr_state <= VERIFY;
+                        ddr_state <= DDR_VERIFY;
                     end if;
                     
-                when VERIFY =>
-                    if read_data = test_data then
-                        ddr_state <= COMPLETE;
+                when DDR_VERIFY =>
+                    if ddr_read_data = test_data then
+                        ddr_state <= DDR_COMPLETE;
                     else
                         error_count <= error_count + 1;
-                        ddr_state <= ERROR;
+                        ddr_state <= DDR_ERROR;
                     end if;
                     
-                when COMPLETE =>
+                when DDR_COMPLETE =>
                     ddr_cas_n <= '1';
                     ddr_ras_n <= '1';
                     ddr_we_n <= '1';
                     -- IDLE төлөвт буцах
                     if btn_test = '1' and btn_test_prev = '0' then
-                        ddr_state <= IDLE;
+                        ddr_state <= DDR_IDLE;
                     end if;
                     
-                when ERROR =>
+                when DDR_ERROR =>
                     ddr_cas_n <= '1';
                     ddr_ras_n <= '1';
                     ddr_we_n <= '1';
                     if btn_test = '1' and btn_test_prev = '0' then
-                        ddr_state <= IDLE;
+                        ddr_state <= DDR_IDLE;
                     end if;
             end case;
         end if;
@@ -240,34 +240,48 @@ begin
             
             -- Төлөв харуулах
             case ddr_state is
-                when IDLE =>
+                when DDR_IDLE =>
                     lcd_message(10) <= CHAR_I;
                     lcd_message(11) <= CHAR_D;
                     lcd_message(12) <= CHAR_L;
                     lcd_message(13) <= CHAR_E;
-                when WRITE_DATA =>
+                    lcd_message(14) <= CHAR_SPACE;
+                    lcd_message(15) <= CHAR_SPACE;
+                when DDR_WRITE =>
                     lcd_message(10) <= CHAR_W;
                     lcd_message(11) <= CHAR_R;
                     lcd_message(12) <= CHAR_I;
                     lcd_message(13) <= CHAR_T;
                     lcd_message(14) <= CHAR_E;
-                when READ_DATA =>
+                    lcd_message(15) <= CHAR_SPACE;
+                when DDR_READ =>
                     lcd_message(10) <= CHAR_R;
                     lcd_message(11) <= CHAR_E;
                     lcd_message(12) <= CHAR_A;
                     lcd_message(13) <= CHAR_D;
-                when COMPLETE =>
+                    lcd_message(14) <= CHAR_SPACE;
+                    lcd_message(15) <= CHAR_SPACE;
+                when DDR_COMPLETE =>
                     lcd_message(10) <= CHAR_O;
                     lcd_message(11) <= CHAR_K;
                     lcd_message(12) <= CHAR_SPACE;
                     lcd_message(13) <= CHAR_SPACE;
-                when ERROR =>
+                    lcd_message(14) <= CHAR_SPACE;
+                    lcd_message(15) <= CHAR_SPACE;
+                when DDR_ERROR =>
                     lcd_message(10) <= CHAR_F;
                     lcd_message(11) <= CHAR_A;
                     lcd_message(12) <= CHAR_I;
                     lcd_message(13) <= CHAR_L;
+                    lcd_message(14) <= CHAR_SPACE;
+                    lcd_message(15) <= CHAR_SPACE;
                 when others =>
                     lcd_message(10) <= CHAR_SPACE;
+                    lcd_message(11) <= CHAR_SPACE;
+                    lcd_message(12) <= CHAR_SPACE;
+                    lcd_message(13) <= CHAR_SPACE;
+                    lcd_message(14) <= CHAR_SPACE;
+                    lcd_message(15) <= CHAR_SPACE;
             end case;
             
             -- 2-р мөр: "DATA: XX"
@@ -278,13 +292,24 @@ begin
             lcd_message(20) <= CHAR_COLON;
             lcd_message(21) <= CHAR_SPACE;
             
-            -- Switch утгыг hex форматаар
-            lcd_message(22) <= std_logic_vector(to_unsigned(
-                to_integer(unsigned(test_data(7 downto 4))) + 48 + 
-                (7 * to_integer(unsigned'("000" & test_data(7)))), 8));
-            lcd_message(23) <= std_logic_vector(to_unsigned(
-                to_integer(unsigned(test_data(3 downto 0))) + 48 + 
-                (7 * to_integer(unsigned'("000" & test_data(3)))), 8));
+            -- Switch утгыг hex форматаар (дээд 4 bit)
+            if test_data(7 downto 4) < "1010" then
+                lcd_message(22) <= std_logic_vector(unsigned(CHAR_0) + unsigned(test_data(7 downto 4)));
+            else
+                lcd_message(22) <= std_logic_vector(unsigned(CHAR_A) + unsigned(test_data(7 downto 4)) - 10);
+            end if;
+            
+            -- Switch утгыг hex форматаар (доод 4 bit)
+            if test_data(3 downto 0) < "1010" then
+                lcd_message(23) <= std_logic_vector(unsigned(CHAR_0) + unsigned(test_data(3 downto 0)));
+            else
+                lcd_message(23) <= std_logic_vector(unsigned(CHAR_A) + unsigned(test_data(3 downto 0)) - 10);
+            end if;
+            
+            -- Үлдсэн хэсэг хоосон
+            for i in 24 to 31 loop
+                lcd_message(i) <= CHAR_SPACE;
+            end loop;
         end if;
     end process;
 
@@ -354,9 +379,19 @@ begin
                                 lcd_en <= '0';
                                 delay_counter <= (others => '0');
                                 lcd_nibble <= '0';
-                                lcd_state <= DISP_ON;
-                                lcd_data_byte <= LCD_DISP_ON;
+                                lcd_state <= FUNC_SET3;
                             end if;
+                        end if;
+                        
+                    when FUNC_SET3 =>
+                        lcd_en <= '0';
+                        if delay_counter < 10 then
+                            delay_counter <= delay_counter + 1;
+                        else
+                            delay_counter <= (others => '0');
+                            lcd_state <= DISP_ON;
+                            lcd_data_byte <= LCD_DISP_ON;
+                            lcd_nibble <= '0';
                         end if;
                         
                     when DISP_ON =>
