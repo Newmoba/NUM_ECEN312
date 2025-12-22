@@ -68,7 +68,8 @@ architecture rtl of DDR_LCD is
     -- ======================================
     signal clock_divider    : unsigned(19 downto 0) := (others => '0');
     signal lcd_clock        : STD_LOGIC := '0';
-    signal delay_count      : unsigned(15 downto 0) := (others => '0');
+    signal lcd_delay_count  : unsigned(15 downto 0) := (others => '0');
+    signal ddr_delay_count  : unsigned(15 downto 0) := (others => '0');
     signal char_count       : unsigned(4 downto 0) := (others => '0');
     signal lcd_byte         : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
     signal nibble_select    : STD_LOGIC := '0';  -- 0=дээд, 1=доод
@@ -91,10 +92,6 @@ architecture rtl of DDR_LCD is
 begin
     -- ======================================
     -- LED төлөв индикатор
-    -- LED[3] = ERROR
-    -- LED[2] = OK
-    -- LED[1] = WRITE/READ идэвхтэй
-    -- LED[0] = IDLE бэлэн
     -- ======================================
     led(3) <= '1' when ddr_state = STATE_ERROR else '0';
     led(2) <= '1' when ddr_state = STATE_OK else '0';
@@ -134,6 +131,7 @@ begin
             read_data <= (others => '0');
             btn_write_prev <= '0';
             btn_read_prev <= '0';
+            ddr_delay_count <= (others => '0');
             ddr_a <= (others => '0');
             ddr_ba <= "00";
             ddr_cas <= '1';
@@ -150,6 +148,7 @@ begin
                     ddr_cas <= '1';
                     ddr_ras <= '1';
                     ddr_we <= '1';
+                    ddr_delay_count <= (others => '0');
                     
                     -- Write товч дарагдсан
                     if btn_wr = '1' and btn_write_prev = '0' then
@@ -168,10 +167,10 @@ begin
                     ddr_cas <= '0';  -- Column Address Strobe
                     ddr_we <= '0';   -- Write Enable
                     
-                    if delay_count < 100 then
-                        delay_count <= delay_count + 1;
+                    if ddr_delay_count < 100 then
+                        ddr_delay_count <= ddr_delay_count + 1;
                     else
-                        delay_count <= (others => '0');
+                        ddr_delay_count <= (others => '0');
                         ddr_state <= STATE_OK;
                     end if;
                     
@@ -181,11 +180,11 @@ begin
                     ddr_cas <= '0';
                     ddr_we <= '1';  -- Read горим
                     
-                    if delay_count < 100 then
-                        delay_count <= delay_count + 1;
+                    if ddr_delay_count < 100 then
+                        ddr_delay_count <= ddr_delay_count + 1;
                         read_data <= write_data;  -- Симуляцид бичсэн утгыг буцаана
                     else
-                        delay_count <= (others => '0');
+                        ddr_delay_count <= (others => '0');
                         -- Бичсэн ба унших утга тааруй эсэхийг шалгах
                         if read_data = write_data then
                             ddr_state <= STATE_OK;
@@ -306,7 +305,7 @@ begin
             lcd_rs <= '0';
             lcd_en <= '0';
             lcd_d <= "0000";
-            delay_count <= (others => '0');
+            lcd_delay_count <= (others => '0');
             char_count <= (others => '0');
             nibble_select <= '0';
         elsif rising_edge(clk) then
@@ -316,10 +315,10 @@ begin
                     when LCD_POWER_ON =>
                         lcd_en <= '0';
                         lcd_rs <= '0';
-                        if delay_count < 1000 then
-                            delay_count <= delay_count + 1;
+                        if lcd_delay_count < 1000 then
+                            lcd_delay_count <= lcd_delay_count + 1;
                         else
-                            delay_count <= (others => '0');
+                            lcd_delay_count <= (others => '0');
                             lcd_state <= LCD_INIT;
                         end if;
                         
@@ -328,11 +327,11 @@ begin
                         lcd_rs <= '0';
                         lcd_d <= "0011";
                         lcd_en <= '1';
-                        if delay_count < 10 then
-                            delay_count <= delay_count + 1;
+                        if lcd_delay_count < 10 then
+                            lcd_delay_count <= lcd_delay_count + 1;
                         else
                             lcd_en <= '0';
-                            delay_count <= (others => '0');
+                            lcd_delay_count <= (others => '0');
                             lcd_state <= LCD_FUNC_SET1;
                         end if;
                         
@@ -341,11 +340,11 @@ begin
                         lcd_rs <= '0';
                         lcd_d <= "0010";
                         lcd_en <= '1';
-                        if delay_count < 10 then
-                            delay_count <= delay_count + 1;
+                        if lcd_delay_count < 10 then
+                            lcd_delay_count <= lcd_delay_count + 1;
                         else
                             lcd_en <= '0';
-                            delay_count <= (others => '0');
+                            lcd_delay_count <= (others => '0');
                             lcd_state <= LCD_FUNC_SET2;
                             lcd_byte <= CMD_FUNC_4BIT;
                             nibble_select <= '0';
@@ -361,11 +360,11 @@ begin
                         else
                             lcd_d <= lcd_byte(3 downto 0);
                             lcd_en <= '1';
-                            if delay_count < 5 then
-                                delay_count <= delay_count + 1;
+                            if lcd_delay_count < 5 then
+                                lcd_delay_count <= lcd_delay_count + 1;
                             else
                                 lcd_en <= '0';
-                                delay_count <= (others => '0');
+                                lcd_delay_count <= (others => '0');
                                 nibble_select <= '0';
                                 lcd_state <= LCD_FUNC_SET3;
                             end if;
@@ -373,10 +372,10 @@ begin
                         
                     when LCD_FUNC_SET3 =>
                         lcd_en <= '0';
-                        if delay_count < 10 then
-                            delay_count <= delay_count + 1;
+                        if lcd_delay_count < 10 then
+                            lcd_delay_count <= lcd_delay_count + 1;
                         else
-                            delay_count <= (others => '0');
+                            lcd_delay_count <= (others => '0');
                             lcd_state <= LCD_DISPLAY_ON;
                             lcd_byte <= CMD_DISPLAY_ON;
                             nibble_select <= '0';
@@ -392,11 +391,11 @@ begin
                         else
                             lcd_d <= lcd_byte(3 downto 0);
                             lcd_en <= '1';
-                            if delay_count < 5 then
-                                delay_count <= delay_count + 1;
+                            if lcd_delay_count < 5 then
+                                lcd_delay_count <= lcd_delay_count + 1;
                             else
                                 lcd_en <= '0';
-                                delay_count <= (others => '0');
+                                lcd_delay_count <= (others => '0');
                                 nibble_select <= '0';
                                 lcd_state <= LCD_CLEAR;
                                 lcd_byte <= CMD_CLEAR;
@@ -413,11 +412,11 @@ begin
                         else
                             lcd_d <= lcd_byte(3 downto 0);
                             lcd_en <= '1';
-                            if delay_count < 100 then
-                                delay_count <= delay_count + 1;
+                            if lcd_delay_count < 100 then
+                                lcd_delay_count <= lcd_delay_count + 1;
                             else
                                 lcd_en <= '0';
-                                delay_count <= (others => '0');
+                                lcd_delay_count <= (others => '0');
                                 nibble_select <= '0';
                                 lcd_state <= LCD_ENTRY_MODE;
                                 lcd_byte <= CMD_ENTRY_MODE;
@@ -434,11 +433,11 @@ begin
                         else
                             lcd_d <= lcd_byte(3 downto 0);
                             lcd_en <= '1';
-                            if delay_count < 5 then
-                                delay_count <= delay_count + 1;
+                            if lcd_delay_count < 5 then
+                                lcd_delay_count <= lcd_delay_count + 1;
                             else
                                 lcd_en <= '0';
-                                delay_count <= (others => '0');
+                                lcd_delay_count <= (others => '0');
                                 nibble_select <= '0';
                                 lcd_state <= LCD_READY;
                                 char_count <= (others => '0');
@@ -464,11 +463,11 @@ begin
                             else
                                 lcd_d <= lcd_byte(3 downto 0);
                                 lcd_en <= '1';
-                                if delay_count < 3 then
-                                    delay_count <= delay_count + 1;
+                                if lcd_delay_count < 3 then
+                                    lcd_delay_count <= lcd_delay_count + 1;
                                 else
                                     lcd_en <= '0';
-                                    delay_count <= (others => '0');
+                                    lcd_delay_count <= (others => '0');
                                     nibble_select <= '0';
                                     char_count <= char_count + 1;
                                 end if;
@@ -489,11 +488,11 @@ begin
                         else
                             lcd_d <= lcd_byte(3 downto 0);
                             lcd_en <= '1';
-                            if delay_count < 5 then
-                                delay_count <= delay_count + 1;
+                            if lcd_delay_count < 5 then
+                                lcd_delay_count <= lcd_delay_count + 1;
                             else
                                 lcd_en <= '0';
-                                delay_count <= (others => '0');
+                                lcd_delay_count <= (others => '0');
                                 nibble_select <= '0';
                                 lcd_state <= LCD_WRITE_LINE2;
                             end if;
@@ -512,11 +511,11 @@ begin
                             else
                                 lcd_d <= lcd_byte(3 downto 0);
                                 lcd_en <= '1';
-                                if delay_count < 3 then
-                                    delay_count <= delay_count + 1;
+                                if lcd_delay_count < 3 then
+                                    lcd_delay_count <= lcd_delay_count + 1;
                                 else
                                     lcd_en <= '0';
-                                    delay_count <= (others => '0');
+                                    lcd_delay_count <= (others => '0');
                                     nibble_select <= '0';
                                     char_count <= char_count + 1;
                                 end if;
@@ -529,10 +528,10 @@ begin
                     -- Шинэчлэх хүлээлт
                     when LCD_DELAY =>
                         lcd_en <= '0';
-                        if delay_count < 5000 then
-                            delay_count <= delay_count + 1;
+                        if lcd_delay_count < 5000 then
+                            lcd_delay_count <= lcd_delay_count + 1;
                         else
-                            delay_count <= (others => '0');
+                            lcd_delay_count <= (others => '0');
                             lcd_state <= LCD_READY;
                         end if;
                 end case;
