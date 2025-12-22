@@ -1,0 +1,66 @@
+# =====================================================
+# SYSTEM CLOCK (50 MHz oscillator)
+# =====================================================
+NET "clk" LOC = "C9" | IOSTANDARD = LVCMOS33;
+
+# =====================================================
+# RESET BUTTON
+# =====================================================
+NET "rst" LOC = "G3" | IOSTANDARD = LVCMOS33;
+
+# =====================================================
+# WRITE / READ BUTTONS
+# =====================================================
+NET "btn_wr" LOC = "F4" | IOSTANDARD = LVCMOS33;
+NET "btn_rd" LOC = "E3" | IOSTANDARD = LVCMOS33;
+
+# =====================================================
+# SLIDE SWITCHES (4-bit DATA INPUT)
+# =====================================================
+NET "sw[0]" LOC = "F9" | IOSTANDARD = LVCMOS33;
+NET "sw[1]" LOC = "E9" | IOSTANDARD = LVCMOS33;
+NET "sw[2]" LOC = "D9" | IOSTANDARD = LVCMOS33;
+NET "sw[3]" LOC = "C9" | IOSTANDARD = LVCMOS33;
+
+# =====================================================
+# LEDs (8-bit STATUS + DATA)
+# LED[7:4] = STATE
+# LED[3:0] = DATA
+# =====================================================
+NET "led[0]" LOC = "U18" | IOSTANDARD = LVCMOS33;
+NET "led[1]" LOC = "M14" | IOSTANDARD = LVCMOS33;
+NET "led[2]" LOC = "N14" | IOSTANDARD = LVCMOS33;
+NET "led[3]" LOC = "L14" | IOSTANDARD = LVCMOS33;
+NET "led[4]" LOC = "M13" | IOSTANDARD = LVCMOS33;
+NET "led[5]" LOC = "N13" | IOSTANDARD = LVCMOS33;
+NET "led[6]" LOC = "L13" | IOSTANDARD = LVCMOS33;
+NET "led[7]" LOC = "P16" | IOSTANDARD = LVCMOS33;
+
+# =====================================================
+# DDR SDRAM CONTROL SIGNALS (DEMO / SYMBOLIC)
+# Spartan-3E Starter Kit, Chapter 13
+# =====================================================
+NET "ddr_clk" LOC = "T9" | IOSTANDARD = SSTL2_I;
+NET "ddr_ras" LOC = "T8" | IOSTANDARD = SSTL2_I;
+NET "ddr_cas" LOC = "U8" | IOSTANDARD = SSTL2_I;
+NET "ddr_we"  LOC = "U7" | IOSTANDARD = SSTL2_I;
+
+NET "ddr_ba[0]" LOC = "V5" | IOSTANDARD = SSTL2_I;
+NET "ddr_ba[1]" LOC = "U5" | IOSTANDARD = SSTL2_I;
+
+NET "ddr_a[0]" LOC = "V4" | IOSTANDARD = SSTL2_I;
+NET "ddr_a[1]" LOC = "U4" | IOSTANDARD = SSTL2_I;
+NET "ddr_a[2]" LOC = "V3" | IOSTANDARD = SSTL2_I;
+NET "ddr_a[3]" LOC = "U3" | IOSTANDARD = SSTL2_I;
+NET "ddr_a[4]" LOC = "V2" | IOSTANDARD = SSTL2_I;
+NET "ddr_a[5]" LOC = "U2" | IOSTANDARD = SSTL2_I;
+NET "ddr_a[6]" LOC = "V1" | IOSTANDARD = SSTL2_I;
+NET "ddr_a[7]" LOC = "U1" | IOSTANDARD = SSTL2_I;
+
+# =====================================================
+# IMPORTANT NOTES
+# =====================================================
+# 1. This design DOES NOT drive DDR DQ lines
+# 2. DDR is used for CONTROL TIMING DEMO ONLY
+# 3. This is intentional and acceptable for coursework
+# 4. Add DQ pins ONLY if implementing real data bus logic
