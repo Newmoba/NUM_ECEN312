@@ -1,26 +1,23 @@
-# Clock 50MHz
-NET "clk" LOC = "C9" | IOSTANDARD = LVCMOS33;
+# Системийн цаг - 50 MHz (Onboard Oscillator)
+NET "clk" LOC = "C9" | IOSTANDARD = LVCMOS33 ;
 
-# Switches
-NET "sw<0>" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP;
-NET "sw<1>" LOC = "L14" | IOSTANDARD = LVTTL | PULLUP;
-NET "sw<2>" LOC = "H18" | IOSTANDARD = LVTTL | PULLUP;
-NET "sw<3>" LOC = "N17" | IOSTANDARD = LVTTL | PULLUP;
+# Reset товч (BTN_SOUTH)
+NET "rst" LOC = "K17" | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 
-# Buttons
-NET "btn_write" LOC = "V4"  | IOSTANDARD = LVTTL | PULLDOWN; # BTN_NORTH
-NET "btn_read"  LOC = "K17" | IOSTANDARD = LVTTL | PULLDOWN; # BTN_SOUTH
+# 4 Ширхэг Switch (SW0 - SW3)
+NET "sw<0>" LOC = "L13" | IOSTANDARD = LVCMOS33 ;
+NET "sw<1>" LOC = "L14" | IOSTANDARD = LVCMOS33 ;
+NET "sw<2>" LOC = "H18" | IOSTANDARD = LVCMOS33 ;
+NET "sw<3>" LOC = "N17" | IOSTANDARD = LVCMOS33 ;
 
-# LCD Control
-NET "lcd_e"    LOC = "M18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "lcd_rs"   LOC = "L18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "lcd_rw"   LOC = "L17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+# Write товч (BTN_WEST)
+NET "btn_wr" LOC = "D18" | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 
-# LCD Data lines (Shared with StrataFlash)
-NET "sf_d<8>"  LOC = "R15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "sf_d<9>"  LOC = "R16" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "sf_d<10>" LOC = "P17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
-NET "sf_d<11>" LOC = "M15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+# Read товч (BTN_EAST)
+NET "btn_rd" LOC = "H13" | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 
-# StrataFlash Chip Enable (MUST BE HIGH to use LCD)
-NET "sf_ce0"   LOC = "D16" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+# 4 Ширхэг LED (LD0 - LD3)
+NET "led<0>" LOC = "F12" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;
+NET "led<1>" LOC = "E12" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;
+NET "led<2>" LOC = "E11" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;
+NET "led<3>" LOC = "F11" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;
