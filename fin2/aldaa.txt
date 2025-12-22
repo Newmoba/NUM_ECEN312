@@ -1,15 +1,16 @@
-WARNING:Xst:1710 - FF/Latch <lcd_text_10_5> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_10_6> (without init value) has a constant value of 1 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_10_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_13_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_11_5> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_11_6> (without init value) has a constant value of 1 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_11_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_12_2> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_12_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_14_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <lcd_text_19_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_24_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <lcd_text_10_5> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_10_6> (without init value) has a constant value of 1 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_10_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+ERROR:PhysDesignRules:368 - The signal <LED<4>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+ERROR:PhysDesignRules:368 - The signal <LED<5>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+ERROR:PhysDesignRules:10 - The network <LED<4>_OBUF> is completely unrouted.
+ERROR:PhysDesignRules:10 - The network <LED<5>_OBUF> is completely unrouted.
+ERROR:Bitgen:25 - DRC detected 4 errors and 2 warnings.  Please see the
+   previously displayed individual error or warning messages for more details.
+
+
+
+
+warning: WARNING:PhysDesignRules:367 - The signal <SD_UDQS_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <SD_LDQS_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
