@@ -1,5 +1,16 @@
-ERROR:HDLParsers:1202 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 68. Redeclaration of symbol read_data.
-ERROR:HDLParsers:3260 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 138. Object name expected: Enum 'read_data' unexpected.
-ERROR:HDLParsers:3260 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 191. Object name expected: Enum 'read_data' unexpected.
-ERROR:HDLParsers:808 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 198. = can not have such operands in this context.
-ERROR:HDLParsers:813 - "C:/Users/User/Downloads/DDR_LCD_Final_Project.vhdl" Line 342. Enumerated value func_set3 is missing in case.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<15>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<14>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<13>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<12>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<10>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<9>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<8>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<7>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<6>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<5>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<4>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<3>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<2>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<1>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<0>>; this signal is connected to multiple drivers.
+ERROR:Xst:528 - Multi-source in Unit
