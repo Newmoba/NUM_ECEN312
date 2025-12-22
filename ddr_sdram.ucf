@@ -1,0 +1,141 @@
+##############################################################################
+# Spartan-3E Starter Kit - DDR SDRAM Demo
+# UCF Constraints File
+##############################################################################
+
+##############################################################################
+# Clock and Reset
+##############################################################################
+NET "CLK_50MHZ"      LOC = "C9"  | IOSTANDARD = LVCMOS33;
+NET "CLK_50MHZ" TNM_NET = sys_clk_pin;
+TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 50000 kHz;
+
+NET "BTN_SOUTH"      LOC = "H13" | IOSTANDARD = LVTTL | PULLDOWN;
+
+##############################################################################
+# Slide Switches (SW3-SW0)
+##############################################################################
+NET "SW<0>"          LOC = "L13" | IOSTANDARD = LVTTL | PULLUP;
+NET "SW<1>"          LOC = "L14" | IOSTANDARD = LVTTL | PULLUP;
+NET "SW<2>"          LOC = "H18" | IOSTANDARD = LVTTL | PULLUP;
+NET "SW<3>"          LOC = "N17" | IOSTANDARD = LVTTL | PULLUP;
+
+##############################################################################
+# Push Buttons
+##############################################################################
+NET "BTN_NORTH"      LOC = "V4"  | IOSTANDARD = LVTTL | PULLDOWN;  # Write
+NET "BTN_EAST"       LOC = "H13" | IOSTANDARD = LVTTL | PULLDOWN;  # Read
+NET "BTN_WEST"       LOC = "D18" | IOSTANDARD = LVTTL | PULLDOWN;  # Inc Address
+
+##############################################################################
+# Discrete LEDs (LED7-LED0)
+##############################################################################
+NET "LED<0>"         LOC = "F12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "LED<1>"         LOC = "E12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "LED<2>"         LOC = "E11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "LED<3>"         LOC = "F11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "LED<4>"         LOC = "C11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "LED<5>"         LOC = "D11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "LED<6>"         LOC = "E9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "LED<7>"         LOC = "F9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+
+##############################################################################
+# LCD Display (16x2 Character LCD)
+##############################################################################
+NET "LCD_E"          LOC = "M18" | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 4;
+NET "LCD_RS"         LOC = "L18" | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 4;
+NET "LCD_RW"         LOC = "L17" | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 4;
+NET "LCD_DB<4>"      LOC = "M15" | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 4;
+NET "LCD_DB<5>"      LOC = "P17" | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 4;
+NET "LCD_DB<6>"      LOC = "R16" | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 4;
+NET "LCD_DB<7>"      LOC = "R15" | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 4;
+
+##############################################################################
+# DDR SDRAM Interface (Micron MT46V32M16 - 512Mbit)
+##############################################################################
+# Clock
+NET "DDR_CLK_P"      LOC = "J5"  | IOSTANDARD = SSTL2_I;
+NET "DDR_CLK_N"      LOC = "J4"  | IOSTANDARD = SSTL2_I;
+
+# Control Signals
+NET "DDR_CKE"        LOC = "K3"  | IOSTANDARD = SSTL2_I;
+NET "DDR_CS_N"       LOC = "K4"  | IOSTANDARD = SSTL2_I;
+NET "DDR_RAS_N"      LOC = "C1"  | IOSTANDARD = SSTL2_I;
+NET "DDR_CAS_N"      LOC = "C2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_WE_N"       LOC = "D1"  | IOSTANDARD = SSTL2_I;
+
+# Bank Address
+NET "DDR_BA<0>"      LOC = "K6"  | IOSTANDARD = SSTL2_I;
+NET "DDR_BA<1>"      LOC = "K5"  | IOSTANDARD = SSTL2_I;
+
+# Address Lines
+NET "DDR_A<0>"       LOC = "T1"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<1>"       LOC = "R3"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<2>"       LOC = "R2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<3>"       LOC = "P1"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<4>"       LOC = "F4"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<5>"       LOC = "H4"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<6>"       LOC = "H3"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<7>"       LOC = "H2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<8>"       LOC = "N4"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<9>"       LOC = "T2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<10>"      LOC = "N5"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<11>"      LOC = "P2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_A<12>"      LOC = "N3"  | IOSTANDARD = SSTL2_I;
+
+# Data Mask
+NET "DDR_DM<0>"      LOC = "J2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DM<1>"      LOC = "J1"  | IOSTANDARD = SSTL2_I;
+
+# Data Strobe
+NET "DDR_DQS<0>"     LOC = "L4"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQS<1>"     LOC = "L3"  | IOSTANDARD = SSTL2_I;
+
+# Data Lines (DQ0-DQ15)
+NET "DDR_DQ<0>"      LOC = "L2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<1>"      LOC = "L1"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<2>"      LOC = "L5"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<3>"      LOC = "K2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<4>"      LOC = "K1"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<5>"      LOC = "H5"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<6>"      LOC = "G5"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<7>"      LOC = "G4"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<8>"      LOC = "F2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<9>"      LOC = "F1"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<10>"     LOC = "E2"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<11>"     LOC = "E1"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<12>"     LOC = "G3"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<13>"     LOC = "G1"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<14>"     LOC = "F3"  | IOSTANDARD = SSTL2_I;
+NET "DDR_DQ<15>"     LOC = "F5"  | IOSTANDARD = SSTL2_I;
+
+##############################################################################
+# Timing Constraints for DDR Interface
+##############################################################################
+# Input Setup/Hold for DDR_DQ and DDR_DQS
+NET "DDR_DQ<*>" OFFSET = IN 2 ns VALID 4 ns BEFORE "DDR_CLK_P" RISING;
+NET "DDR_DQS<*>" OFFSET = IN 2 ns VALID 4 ns BEFORE "DDR_CLK_P" RISING;
+
+# Output timing for DDR signals
+NET "DDR_DQ<*>" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_DQS<*>" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_A<*>" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_BA<*>" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_RAS_N" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_CAS_N" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_WE_N" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_CS_N" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_CKE" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+NET "DDR_DM<*>" OFFSET = OUT 2 ns AFTER "DDR_CLK_P";
+
+##############################################################################
+# Additional Constraints
+##############################################################################
+# Make sure button inputs are synchronized properly
+NET "BTN_*" TIG;
+
+# Ignore timing on async reset
+NET "BTN_SOUTH" TIG;
+
+# Multi-cycle paths for LCD (slow interface)
+NET "LCD_*" TIG;
