@@ -1,130 +1,94 @@
-# ============================================================================
-# DDR SDRAM LCD Test System - UCF File
-# Xilinx FPGA Pin Constraints
-# ============================================================================
+# ========================================
+# Spartan-3E Starter Kit UCF файл
+# DDR санах ой тестийн систем + LCD
+# ========================================
 
-# Clock & Reset
-# ============================================================================
-NET "clk"           LOC = "E3"  | IOSTANDARD = LVCMOS33;
+# ========================================
+# Системийн цаг (50MHz)
+# ========================================
+NET "clk" LOC = "C9" | IOSTANDARD = LVCMOS33;
 NET "clk" TNM_NET = sys_clk_pin;
-TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 50 MHz HIGH 50%;
+TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 50000 kHz;
 
-NET "reset"         LOC = "C12" | IOSTANDARD = LVCMOS33;  # CPU_RESET button
+# ========================================
+# Reset товч (BTN_NORTH)
+# ========================================
+NET "rst" LOC = "V4" | IOSTANDARD = LVTTL | PULLDOWN;
 
-# Switch Inputs (8 switches)
-# ============================================================================
-NET "switches<0>"   LOC = "J15" | IOSTANDARD = LVCMOS33;
-NET "switches<1>"   LOC = "L16" | IOSTANDARD = LVCMOS33;
-NET "switches<2>"   LOC = "M13" | IOSTANDARD = LVCMOS33;
-NET "switches<3>"   LOC = "R15" | IOSTANDARD = LVCMOS33;
-NET "switches<4>"   LOC = "R17" | IOSTANDARD = LVCMOS33;
-NET "switches<5>"   LOC = "T18" | IOSTANDARD = LVCMOS33;
-NET "switches<6>"   LOC = "U18" | IOSTANDARD = LVCMOS33;
-NET "switches<7>"   LOC = "R13" | IOSTANDARD = LVCMOS33;
+# ========================================
+# Товчнууд
+# BTN_EAST = Write товч
+# BTN_WEST = Read товч
+# ========================================
+NET "btn_wr" LOC = "H13" | IOSTANDARD = LVTTL | PULLDOWN;
+NET "btn_rd" LOC = "D18" | IOSTANDARD = LVTTL | PULLDOWN;
 
-# Button Inputs
-# ============================================================================
-NET "btn_test"      LOC = "N17" | IOSTANDARD = LVCMOS33;  # BTNC - Center button
-NET "btn_write"     LOC = "M18" | IOSTANDARD = LVCMOS33;  # BTNL - Left button
-NET "btn_read"      LOC = "P18" | IOSTANDARD = LVCMOS33;  # BTNR - Right button
+# ========================================
+# Switch-үүд (SW3-SW0)
+# ========================================
+NET "sw<0>" LOC = "L13" | IOSTANDARD = LVTTL | PULLUP;
+NET "sw<1>" LOC = "L14" | IOSTANDARD = LVTTL | PULLUP;
+NET "sw<2>" LOC = "H18" | IOSTANDARD = LVTTL | PULLUP;
+NET "sw<3>" LOC = "N17" | IOSTANDARD = LVTTL | PULLUP;
 
-# LCD 4-bit Interface (16x2 Character LCD)
-# ============================================================================
-NET "lcd_rs"        LOC = "D4"  | IOSTANDARD = LVCMOS33;  # Register Select
-NET "lcd_rw"        LOC = "D3"  | IOSTANDARD = LVCMOS33;  # Read/Write
-NET "lcd_en"        LOC = "F4"  | IOSTANDARD = LVCMOS33;  # Enable
+# ========================================
+# LED-үүд (LED3-LED0)
+# ========================================
+NET "led<0>" LOC = "F12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<1>" LOC = "E12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<2>" LOC = "E11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<3>" LOC = "F11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
 
-# LCD 4-bit Data Bus
-NET "lcd_data<0>"   LOC = "D2"  | IOSTANDARD = LVCMOS33;  # D4
-NET "lcd_data<1>"   LOC = "F5"  | IOSTANDARD = LVCMOS33;  # D5
-NET "lcd_data<2>"   LOC = "G5"  | IOSTANDARD = LVCMOS33;  # D6
-NET "lcd_data<3>"   LOC = "H5"  | IOSTANDARD = LVCMOS33;  # D7
+# ========================================
+# LCD дэлгэц (16x2 Character LCD)
+# 4-bit дата горим
+# ========================================
+NET "lcd_rs" LOC = "L18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_rw" LOC = "L17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_en" LOC = "M18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
 
-# DDR SDRAM Interface
-# ============================================================================
+NET "lcd_d<0>" LOC = "R15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_d<1>" LOC = "R16" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_d<2>" LOC = "P17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_d<3>" LOC = "M15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+
+# ========================================
+# DDR SDRAM холболт
+# Micron MT46V32M16 - 512Mbit DDR SDRAM
+# ========================================
+
 # DDR Clock
-NET "ddr_clk"       LOC = "G18" | IOSTANDARD = SSTL18_II;
+NET "ddr_clk" LOC = "G3" | IOSTANDARD = SSTL2_I;
 
-# DDR Address Lines (13-bit)
-NET "ddr_addr<0>"   LOC = "J19" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<1>"   LOC = "H19" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<2>"   LOC = "H20" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<3>"   LOC = "H21" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<4>"   LOC = "H22" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<5>"   LOC = "K21" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<6>"   LOC = "L20" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<7>"   LOC = "J20" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<8>"   LOC = "K19" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<9>"   LOC = "K20" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<10>"  LOC = "L19" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<11>"  LOC = "L18" | IOSTANDARD = SSTL18_II;
-NET "ddr_addr<12>"  LOC = "M20" | IOSTANDARD = SSTL18_II;
+# DDR Command сигналууд
+NET "ddr_ras" LOC = "L1" | IOSTANDARD = SSTL2_I;
+NET "ddr_cas" LOC = "L4" | IOSTANDARD = SSTL2_I;
+NET "ddr_we"  LOC = "M3" | IOSTANDARD = SSTL2_I;
 
-# DDR Bank Address (2-bit)
-NET "ddr_ba<0>"     LOC = "N19" | IOSTANDARD = SSTL18_II;
-NET "ddr_ba<1>"     LOC = "N20" | IOSTANDARD = SSTL18_II;
+# DDR Bank Address (BA1-BA0)
+NET "ddr_ba<0>" LOC = "K5" | IOSTANDARD = SSTL2_I;
+NET "ddr_ba<1>" LOC = "K6" | IOSTANDARD = SSTL2_I;
 
-# DDR Control Signals
-NET "ddr_cas_n"     LOC = "P20" | IOSTANDARD = SSTL18_II;  # Column Address Strobe
-NET "ddr_ras_n"     LOC = "P19" | IOSTANDARD = SSTL18_II;  # Row Address Strobe
-NET "ddr_we_n"      LOC = "R20" | IOSTANDARD = SSTL18_II;  # Write Enable
+# DDR Row/Column Address (A12-A0)
+NET "ddr_a<0>"  LOC = "T1" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<1>"  LOC = "R3" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<2>"  LOC = "R2" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<3>"  LOC = "P1" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<4>"  LOC = "F4" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<5>"  LOC = "H4" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<6>"  LOC = "H3" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<7>"  LOC = "H1" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<8>"  LOC = "H2" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<9>"  LOC = "N4" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<10>" LOC = "T2" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<11>" LOC = "N5" | IOSTANDARD = SSTL2_I;
+NET "ddr_a<12>" LOC = "P2" | IOSTANDARD = SSTL2_I;
 
-# LED Status Indicators (8 LEDs)
-# ============================================================================
-NET "led_status<0>" LOC = "H17" | IOSTANDARD = LVCMOS33;
-NET "led_status<1>" LOC = "K15" | IOSTANDARD = LVCMOS33;
-NET "led_status<2>" LOC = "J13" | IOSTANDARD = LVCMOS33;
-NET "led_status<3>" LOC = "N14" | IOSTANDARD = LVCMOS33;
-NET "led_status<4>" LOC = "R18" | IOSTANDARD = LVCMOS33;
-NET "led_status<5>" LOC = "V17" | IOSTANDARD = LVCMOS33;
-NET "led_status<6>" LOC = "U17" | IOSTANDARD = LVCMOS33;
-NET "led_status<7>" LOC = "U16" | IOSTANDARD = LVCMOS33;
-
-# ============================================================================
-# Timing Constraints
-# ============================================================================
-
-# LCD Interface Timing
-NET "lcd_en" TNM = "lcd_en";
-TIMESPEC TS_lcd_setup = FROM "FFS" TO "lcd_en" 500 ns;
-TIMESPEC TS_lcd_hold  = FROM "lcd_en" TO "FFS" 500 ns;
-
-# DDR SDRAM Timing
-NET "ddr_clk" TNM_NET = "ddr_clk";
-TIMESPEC TS_ddr_clk = PERIOD "ddr_clk" 7.5 ns HIGH 50%;
-
-# Input Delay Constraints (for switch debouncing)
-OFFSET = IN 10 ns VALID 20 ns BEFORE "clk" RISING;
-
-# Output Delay Constraints
-OFFSET = OUT 10 ns AFTER "clk" RISING;
-
-# ============================================================================
-# Additional Configuration
-# ============================================================================
-
-# Pull-up/Pull-down Configuration
-NET "btn_test"      | PULLDOWN;
-NET "btn_write"     | PULLDOWN;
-NET "btn_read"      | PULLDOWN;
-NET "reset"         | PULLUP;
-
-# Slew Rate Control
-NET "lcd_data<*>"   | SLEW = SLOW;
-NET "lcd_rs"        | SLEW = SLOW;
-NET "lcd_rw"        | SLEW = SLOW;
-NET "lcd_en"        | SLEW = SLOW;
-
-# Drive Strength
-NET "led_status<*>" | DRIVE = 8;
-NET "lcd_data<*>"   | DRIVE = 8;
-
-# ============================================================================
-# Notes:
-# ============================================================================
-# 1. Энэхүү UCF файл нь Xilinx Basys3/Nexys4 board-д зориулагдсан
-# 2. LCD нь стандарт 16x2 HD44780 хянагчтай байх ёстой
-# 3. Pin утгуудыг өөрийн board-ийн schematic-тай тулган шалгаарай
-# 4. DDR SDRAM pin-үүд нь ихэнх Xilinx board дээр өөр байж болно
-# 5. Хэрэв өөр board ашиглаж байвал pin assignment-ийг шинэчлээрэй
-# ============================================================================
+# ========================================
+# Тайлбар:
+# - SSTL2_I: Stub Series Terminated Logic (DDR-д зориулсан)
+# - LVCMOS33: Ердийн 3.3V логик (LCD, LED, Switch)
+# - PULLUP/PULLDOWN: Товч, switch-ийн тогтворгүй төлөв засах
+# - SLEW=SLOW: Дохионы шуугианыг багасгах
+# - DRIVE: Гаралтын хүчдэл (4-8mA)
+# ========================================
