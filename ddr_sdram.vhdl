@@ -1,12 +1,3 @@
---------------------------------------------------------------------------------
--- DDR SDRAM Demonstration Project for Spartan-3E Starter Kit
--- Top Level Module
---------------------------------------------------------------------------------
--- This module connects all components together and interfaces with the board
--- Inputs: 4 switches, 4 buttons, 50MHz clock
--- Outputs: 8 LEDs, LCD display, DDR SDRAM interface
---------------------------------------------------------------------------------
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
