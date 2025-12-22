@@ -1,0 +1,26 @@
+# Clock
+NET "clk" LOC = "C9" | IOSTANDARD = LVCMOS33 | PERIOD = 20ns;
+
+# Switches
+NET "sw<0>" LOC = "H13" | IOSTANDARD = LVCMOS33;
+NET "sw<1>" LOC = "L14" | IOSTANDARD = LVCMOS33;
+NET "sw<2>" LOC = "L13" | IOSTANDARD = LVCMOS33;
+NET "sw<3>" LOC = "N14" | IOSTANDARD = LVCMOS33;
+
+# Buttons (example)
+NET "btn_north" LOC = "V4" | IOSTANDARD = LVCMOS33 | PULLUP;
+NET "btn_east"  LOC = "D18" | IOSTANDARD = LVCMOS33 | PULLUP;
+-- Other buttons: BTN_SOUTH = "K17", BTN_WEST = "P18" гэх мэт
+
+# LCD
+NET "lcd_rs" LOC = "L18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_rw" LOC = "L17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_e"  LOC = "M18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_db<4>" LOC = "R15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_db<5>" LOC = "R16" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_db<6>" LOC = "T17" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+NET "lcd_db<7>" LOC = "T18" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW;
+
+# SDRAM (partial, full in UG230)
+NET "sdram_clk" LOC = "T4" | IOSTANDARD = SSTL2_I;
+-- Other pins long list, reference manual-аас бүрэн авна уу.
