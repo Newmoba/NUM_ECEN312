@@ -120,6 +120,7 @@ begin
             case state is
                 when INIT =>
                     -- Simple initialization
+                    LED <= "00000000";  -- All LEDs off during init
                     if init_counter < 10000 then
                         init_counter <= init_counter + 1;
                         sdram_cmd <= CMD_NOP;
@@ -164,6 +165,10 @@ begin
                     sdram_cmd <= CMD_NOP;
                     dq_oe <= '0';
                     
+                    -- Keep LED state in IDLE
+                    LED(4) <= '0';
+                    LED(5) <= '0';
+                    
                     if write_trigger = '1' then
                         state <= WRITE_CMD;
                         cmd_counter <= (others => '0');
@@ -202,6 +207,9 @@ begin
                     else
                         state <= IDLE;
                         LED(3 downto 0) <= data_to_write;  -- Show written data
+                        LED(4) <= '0';
+                        LED(5) <= '0';
+                        LED(6) <= '0';
                         LED(7) <= '1';  -- Indicate write complete
                     end if;
                     
@@ -240,8 +248,10 @@ begin
                     
                 when DISPLAY =>
                     LED(3 downto 0) <= data_read(3 downto 0);  -- Show read data
-                    LED(7) <= '0';
+                    LED(4) <= '0';
+                    LED(5) <= '0';
                     LED(6) <= '1';  -- Indicate read complete
+                    LED(7) <= '0';
                     state <= IDLE;
                     
             end case;
