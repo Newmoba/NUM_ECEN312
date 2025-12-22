@@ -1,16 +1,15 @@
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<15>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<14>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<13>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<12>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<10>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<9>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<8>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<7>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<6>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<5>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<4>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<3>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<2>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<1>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit <DDR_LCD> on signal <delay_count<0>>; this signal is connected to multiple drivers.
-ERROR:Xst:528 - Multi-source in Unit
+WARNING:Xst:1710 - FF/Latch <lcd_text_10_5> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_10_6> (without init value) has a constant value of 1 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_10_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_13_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_11_5> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_11_6> (without init value) has a constant value of 1 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_11_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_12_2> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_12_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_14_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_text_19_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_24_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_text_10_5> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_10_6> (without init value) has a constant value of 1 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_text_10_7> (without init value) has a constant value of 0 in block <DDR_LCD>. This FF/Latch will be trimmed during the optimization process.
