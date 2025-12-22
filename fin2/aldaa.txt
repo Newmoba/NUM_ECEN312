@@ -1,16 +1,56 @@
-ERROR:PhysDesignRules:368 - The signal <LED<4>_OBUF> is incomplete. The signal
-   is not driven by any source pin in the design.
-ERROR:PhysDesignRules:368 - The signal <LED<5>_OBUF> is incomplete. The signal
-   is not driven by any source pin in the design.
-ERROR:PhysDesignRules:10 - The network <LED<4>_OBUF> is completely unrouted.
-ERROR:PhysDesignRules:10 - The network <LED<5>_OBUF> is completely unrouted.
-ERROR:Bitgen:25 - DRC detected 4 errors and 2 warnings.  Please see the
-   previously displayed individual error or warning messages for more details.
-
-
-
-
-warning: WARNING:PhysDesignRules:367 - The signal <SD_UDQS_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <SD_LDQS_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
+WARNING:Xst:2565 - Inout <SD_UDQS> is never assigned.
+WARNING:Xst:2565 - Inout <SD_LDQS> is never assigned.
+WARNING:Xst:646 - Signal <data_read<15:4>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1426 - The value init of the FF/Latch init_done hinder the constant cleaning in the block sdram_test.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1293 - FF/Latch <dq_out_4> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_5> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_6> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_7> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_8> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_9> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_10> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_11> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_12> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_13> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_14> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_15> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <data_read_4> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_5> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_6> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_7> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_8> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_9> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_10> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_11> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_12> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_13> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_14> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_15> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_4> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_5> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_6> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_7> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_8> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_9> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_10> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_11> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_12> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_13> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_14> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:2677 - Node <data_read_15> of sequential type is unconnected in block <sdram_test>.
+WARNING:Xst:1426 - The value init of the FF/Latch init_done hinder the constant cleaning in the block sdram_test.
+   You should achieve better results by setting this init to 1.
+WARNING:Xst:1293 - FF/Latch <dq_out_4> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_5> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_6> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_7> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_8> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_9> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_10> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_11> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_12> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_13> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_14> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <dq_out_15> has a constant value of 0 in block <sdram_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <clk_counter_1> of sequential type is unconnected in block <sdram_test>.
